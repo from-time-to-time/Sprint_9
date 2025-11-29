@@ -85,7 +85,7 @@ def password():
 
 @pytest.fixture
 def authorize(driver):
-    signin_page = SigninPage(driver)
+    signin_page = SigninPage(driver).open()
     signin_page.fill_email(UserData.USERNAME)
     signin_page.fill_password(UserData.PASSWORD)
     recipes_page = signin_page.click_auth()
