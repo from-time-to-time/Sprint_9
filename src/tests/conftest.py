@@ -1,20 +1,57 @@
+import os
 import random
 import string
 
 import pytest
 from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
 
 from src.config import Config
 from src.helpers.data import UserData
 from src.pages.signin_page import SigninPage
 
 
-@pytest.fixture(scope='function')
+
+# @pytest.fixture(scope='function')
+# def driver():
+#     chrome = webdriver.Chrome()
+#     chrome.get(Config.BASE_URL)
+#     yield chrome
+#     chrome.quit()
+
+
+@pytest.fixture(scope="function")
 def driver():
-    chrome = webdriver.Chrome()
-    chrome.get(Config.BASE_URL)
-    yield chrome
-    chrome.quit()
+    selenoid_url = os.getenv("SELENOID_URL")
+
+    options = Options()
+    options.add_argument("--window-size=1920,1080")
+    options.add_argument("--disable-dev-shm-usage")
+    options.add_argument("--no-sandbox")
+
+    if selenoid_url:
+        # Работа через Selenoid
+        options.set_capability("browserName", "chrome")
+        options.set_capability(
+            "selenoid:options",
+            {
+                "enableVNC": True,
+                "enableVideo": False,
+            },
+        )
+
+        browser = webdriver.Remote(
+            command_executor=selenoid_url,
+            options=options,
+        )
+    else:
+        # Локальный запуск
+        browser = webdriver.Chrome(options=options)
+        browser.get(Config.BASE_URL)
+
+    yield browser
+    browser.quit()
+
 
 
 def _rnd(n=5):
