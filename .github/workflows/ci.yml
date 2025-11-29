@@ -18,6 +18,10 @@ jobs:
           docker version
           docker compose version || docker-compose version
 
+      - name: Pull Selenoid browser images
+        run: |
+          docker pull selenoid/vnc:chrome_114.0
+
       - name: Run tests via Docker Compose
         run: |
           docker compose -f docker-compose.yml up --build \
