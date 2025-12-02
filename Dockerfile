@@ -18,4 +18,4 @@ RUN pip install --upgrade pip \
 
 COPY . .
 
-CMD ["pytest", "-v", "-s", "src/tests", "--alluredir=allure_results"]
+CMD ["pytest", "-v", "-s", "tests", "--alluredir=allure_results"]

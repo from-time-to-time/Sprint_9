@@ -11,15 +11,6 @@ from src.helpers.data import UserData
 from src.pages.signin_page import SigninPage
 
 
-
-# @pytest.fixture(scope='function')
-# def driver():
-#     chrome = webdriver.Chrome()
-#     chrome.get(Config.BASE_URL)
-#     yield chrome
-#     chrome.quit()
-
-
 @pytest.fixture(scope="function")
 def driver():
     selenoid_url = os.getenv("SELENOID_URL")

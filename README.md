@@ -59,13 +59,13 @@
 │   │   ├── recipes_page.py
 │   │   ├── signin_page.py
 │   │   └── signup_page.py
-│   └── tests/                  # Тестовые модули
-│       ├── __init__.py
-│       ├── config.py           # Конфигурация (base url)
-│       ├── conftest.py         # Фикстуры pytest, настройка WebDriver
-│       ├── test_create_recipe.py
-│       ├── test_signin.py
-│       └── test_signup.py
+├── tests/                      # Тестовые модули (раньше были в src/tests)
+│   ├── __init__.py
+│   ├── config.py               # Конфигурация (base url)
+│   ├── conftest.py             # Фикстуры pytest, настройка WebDriver
+│   ├── test_create_recipe.py
+│   ├── test_signin.py
+│   └── test_signup.py
 ├── venv/                       
 ├── .dockerignore
 ├── .gitattributes

@@ -12,7 +12,7 @@ services:
       -listen :4444
       -timeout 3m0s
       -limit 4
-      -container-network selenoid_net   # <-- ВАЖНО
+      -container-network selenoid_net
     networks:
       - selenoid_net
 
@@ -40,7 +40,7 @@ services:
     environment:
       - SELENOID_URL=http://selenoid:4444/wd/hub
       - BROWSER=chrome
-      - PYTHONPATH=/app/src
+      - PYTHONPATH=/app
     command:
       - sh
       - -c
@@ -51,7 +51,7 @@ services:
           sleep 2;
         done;
         echo 'Selenoid is UP, starting tests';
-        pytest -v -s src/tests --alluredir=allure_results
+        pytest -v -s tests --alluredir=allure_results
     networks:
       - selenoid_net
 
